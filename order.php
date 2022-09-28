@@ -1,7 +1,5 @@
 <?php
-
 include_once "./backend.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +14,13 @@ include_once "./backend.php";
 <body>
 	<h1>Ваш заказ принят</h1>
 	<p>Вы заказали:</p>
-<?php
-	$pizza = $_POST['pizza'];
-	$souce = $_POST['souce'];
-	$size = $_POST['size'];
 
-	$txt=<<<MYTEXT
+    <?php
+    $pizza = $_POST['pizza'];
+    $souce = $_POST['souce'];
+    $size = $_POST['size'];
+
+    $txt = <<<MYTEXT
 	<ul>
 		<li>Пицца: $pizza</li>
 		<li>Соус: $souce</li>
@@ -29,35 +28,34 @@ include_once "./backend.php";
 	</ul>
 	MYTEXT;
 
-	echo $txt;
-	
+    echo $txt;
+
     foreach ($pizzas as $key) {
-   		if($key['name']===$pizza){
-   			$pizzaPrice = $key['price'];
+        if ($key['name'] === $pizza) {
+            $pizzaPrice = $key['price'];
         }
-   	}
-	
+    }
+
     foreach ($sauces as $key) {
-   		if($key['name']===$souce){
-   			$soucePrice = $key['price'];
+        if ($key['name'] === $souce) {
+            $soucePrice = $key['price'];
         }
-   	}
-	
+    }
+
     foreach ($sizes as $key) {
-   		if($key['size']===$size){
-   			$sizePrice = $key['price'];
+        if ($key['size'] === $size) {
+            $sizePrice = $key['price'];
         }
-   	}
+    }
 
-   	$sumPriceUsd = $pizzaPrice + $soucePrice + $sizePrice;
+    $sumPriceUsd = $pizzaPrice + $soucePrice + $sizePrice;
 
-   	$json = file_get_contents('https://www.nbrb.by/api/exrates/rates/431');
-   	$jsonDecode = json_decode($json, true);
-   	$blrSum = round($sumPriceUsd * $jsonDecode['Cur_OfficialRate'], 2);
-   	
+    $json = file_get_contents('https://www.nbrb.by/api/exrates/rates/431');
+    $jsonDecode = json_decode($json, true);
+    $blrSum = round($sumPriceUsd * $jsonDecode['Cur_OfficialRate'], 2);
 
-	echo "<p>К оплате: $blrSum рублей</p>";
-?>	
-	
+    echo "<p>К оплате: $blrSum рублей</p>";
+    ?>
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+
 require_once './DB/DBConnection.php';
 
 class MysqlConnection extends DBConnection {

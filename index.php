@@ -1,7 +1,5 @@
 <?php
-
 require_once "./backend.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -47,10 +45,4 @@ require_once "./backend.php";
 
 </body>
 </html>
-
-
-
-
-
-
 	
