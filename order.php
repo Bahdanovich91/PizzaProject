@@ -12,8 +12,8 @@ include_once "./backend.php";
 </head>
 
 <body>
-	<h1>Ваш заказ принят</h1>
-	<p>Вы заказали:</p>
+    <h1>Ваш заказ принят</h1>
+    <p>Вы заказали:</p>
 
     <?php
     $pizza = $_POST['pizza'];
